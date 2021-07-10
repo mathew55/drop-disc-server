@@ -1,7 +1,9 @@
+import jsons
 
 ROW_COUNT = 6
 COLUMN_COUNT = 9
 
+game_queue = []
 
 class Game_Logic:
 
@@ -31,7 +33,8 @@ class Game:
         self.player2 = players[1]
         self.board = board
         self.game_logic = game_logic
-        self.board.display_current_board_state()
+        self.game_id = 1
+        self.next_move_player = self.get_next_turn_player()
 
     def next_turn(self):
         self.turn += 1
@@ -45,3 +48,12 @@ class Game:
     def declare_winner(self, player):
         self.game_over = True
         self.winner = player.name
+
+    # def identify_next_move_player(self):
+    #     if self.next_move_player == self.player1:
+    #         self.next_move_player = self.player2
+    #     else:
+    #         self.next_move_player = self.player1
+
+    def to_ser_obj(self):
+        return jsons.dump(self)
