@@ -21,10 +21,9 @@ class Connections:
         print(f"Size - {len(self.connection_queue)}")
         while (len(self.connection_queue) % 2) != 0:
             True
+
         game = Game([self.connection_queue[0], self.connection_queue[1]], board, game_logic)
 
-        self.connection_queue.pop(0) #Frees up connection_queue
-        self.connection_queue.pop(1)
         game_queue.append(game)
         return game
 

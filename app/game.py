@@ -24,36 +24,40 @@ class Game_Logic:
 
 class Game:
 
-    turn = 0
     winner = ''
     game_over = False
 
     def __init__(self, players, board, game_logic):
+
+        self.turn = 0
         self.player1 = players[0]
         self.player2 = players[1]
         self.board = board
         self.game_logic = game_logic
         self.game_id = 1
-        self.next_move_player = self.get_next_turn_player()
+        self.next_move_player = ''
+        self.set_next_turn_player()
 
     def next_turn(self):
         self.turn += 1
+        self.set_next_turn_player()
 
     def get_next_turn_player(self):
-        if self.turn % 2 == 0:
-            return self.player1
-        else:
-            return self.player2
+        return self.next_move_player
 
     def declare_winner(self, player):
         self.game_over = True
         self.winner = player.name
 
-    # def identify_next_move_player(self):
-    #     if self.next_move_player == self.player1:
-    #         self.next_move_player = self.player2
-    #     else:
-    #         self.next_move_player = self.player1
-
     def to_ser_obj(self):
         return jsons.dump(self)
+
+    def set_next_turn_player(self):
+        if self.turn % 2 == 0:
+            print(self.player1)
+            self.next_move_player = self.player1
+        else:
+            self.next_move_player = self.player2
+
+    def __str__(self):
+        return self.next_move_player.name

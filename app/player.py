@@ -1,3 +1,5 @@
+import jsons
+
 class Player:
 
     def __init__(self, name, token):
@@ -6,3 +8,6 @@ class Player:
 
     def __str__(self):
         return self.name
+
+    def to_ser_obj(self):
+        return jsons.dump(self)

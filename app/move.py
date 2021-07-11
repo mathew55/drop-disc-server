@@ -17,5 +17,11 @@ def next_board_move(game_id, move_col):
         if game.game_logic.check_victory(game.board.get_board(), next_turn_player.token):
             game.declare_winner(next_turn_player)
 
+        game.next_turn()
+
+
     return game.to_ser_obj()
 
+def next_player(game_id):
+    game = game_queue[0]
+    return game
