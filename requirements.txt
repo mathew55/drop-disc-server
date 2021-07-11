@@ -3,3 +3,4 @@ pygame==2.0.1
 Flask==2.0.1
 jsons==1.4.2
 requests=2.25.1
+pyhocon==0.3.57
