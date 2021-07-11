@@ -1,13 +1,14 @@
-from flask import Flask
-from app.connection_manager import Connections
+from app.context.app_context import ApplicationContext
+from app.game import Game_Logic
+from app.model.game_models.game import Game
 from app.board import Board
-import jsons
-from app.game import game_queue
-import json
 
+board = Board()
+game_logic = Game_Logic()
+cx = ApplicationContext.getContext()
 
 def next_board_move(game_id, move_col):
-    game = game_queue[0]
+    game = cx.game_queue.pop(0)
     next_turn_player = game.get_next_turn_player()
     insert_position_np = int(move_col)
 
@@ -19,9 +20,23 @@ def next_board_move(game_id, move_col):
 
         game.next_turn()
 
-
     return game.to_ser_obj()
 
 def next_player(game_id):
-    game = game_queue[0]
+    game = cx.game_queue[0]
+    return game
+
+
+def start_match():
+    print(f"Size - {cx.player_pool.get_size()}")
+    while (cx.player_pool.get_size() % 2) != 0:
+        True
+
+    player1 = cx.player_pool.get_next_waiting_player()
+    player2 = cx.player_pool.get_next_waiting_player()
+
+
+    game = Game([player1, player2], board, game_logic)
+
+    cx.game_queue.append(game)
     return game

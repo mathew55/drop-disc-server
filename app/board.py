@@ -1,4 +1,5 @@
 import numpy as np
+import jsons
 
 ROW_COUNT = 6
 COLUMN_COUNT = 9
@@ -24,3 +25,6 @@ class Board:
 
     def get_board(self):
         return self.board
+
+    def board_as_serialized(self):
+        return jsons.dump(self.board)
