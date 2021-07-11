@@ -27,16 +27,3 @@ def next_player(game_id):
     return game
 
 
-def start_match():
-    print(f"Size - {cx.player_pool.get_size()}")
-    while (cx.player_pool.get_size() % 2) != 0:
-        True
-
-    player1 = cx.player_pool.get_next_waiting_player()
-    player2 = cx.player_pool.get_next_waiting_player()
-
-
-    game = Game([player1, player2], board, game_logic)
-
-    cx.game_queue.append(game)
-    return game

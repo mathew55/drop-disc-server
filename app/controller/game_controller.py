@@ -7,18 +7,20 @@ from app.player import Player
 from flask import request
 from app.model.response_models.response import Response
 from app.context.app_context import ApplicationContext
+from app.connection_manager import Connections
 
 
 game_controller = Blueprint('game_controller', __name__, template_folder="templates")
 cx = ApplicationContext.getContext()
+conn = Connections()
 
 @game_controller.route('/start-game/', methods= ["POST"])
 def start_game():
     player_name = request.args.get("player_name")
     player = Player(player_name, 1)
     print(f"Player - {player}")
-    cx.player_pool.add_player_to_pool(player)
-    game = cx.player_pool.start_match()
+    conn.add_player_to_pool(player)
+    game = conn.start_match()
     print(f"Game started - {game}")
     print(f"Game started for player- {player_name}")
     return Response(

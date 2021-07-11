@@ -1,5 +1,3 @@
-from app.connection_manager import Connections
-
 
 class ApplicationContext:
     '''
@@ -20,8 +18,8 @@ class ApplicationContext:
         if ApplicationContext.__instance != None:
             raise Exception("The Configurations are already loaded in memory, Please reuse the configs")
         else:
-            player_pool = Connections()
-            self.registerPlayerPool(player_pool)
+            # player_pool = Connections()
+            # self.registerPlayerPool(player_pool)
             self.initializeGameQueue()
             ApplicationContext.__instance = self
 
