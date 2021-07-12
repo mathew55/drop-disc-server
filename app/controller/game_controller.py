@@ -1,7 +1,6 @@
 from flask import Blueprint
 import json
 from app.move import next_board_move
-# from app.move import start_match
 from app.move import next_player
 from app.player import Player
 from flask import request
@@ -18,11 +17,10 @@ conn = Connections()
 def start_game():
     player_name = request.args.get("player_name")
     player = Player(player_name, 1)
-    print(f"Player - {player}")
+    print(f"Request from Player - {player}")
     conn.add_player_to_pool(player)
     game = conn.start_match()
     print(f"Game started - {game}")
-    print(f"Game started for player- {player_name}")
     return Response(
         payload=game.game_state_as_dict(),
         message=f"Opponent Found, Starting the Game",

@@ -6,15 +6,14 @@ class Game:
     winner = ''
     game_over = False
 
-    def __init__(self, players, board, game_logic):
+    def __init__(self, gameid, players, board, game_logic):
 
         self.turn = 0
         self.player1 = players[0]
         self.player2 = players[1]
         self.board = board
         self.game_logic = game_logic
-        # self.game_id = int(time.time())
-        self.game_id = 1
+        self.game_id = gameid
         self.next_move_player = ''
         self.set_next_turn_player()
 

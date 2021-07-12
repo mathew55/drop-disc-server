@@ -27,5 +27,4 @@ class ApplicationContext:
         self.player_pool = player_pool
 
     def initializeGameQueue(self):
-        self.game_queue = []
-        self.game_queue
+        self.game_queue_map = {}
