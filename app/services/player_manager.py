@@ -1,8 +1,7 @@
 from app.context.app_context import ApplicationContext
-from app.game import Game_Logic
 from app.model.game_models.game import Game
-from app.board import Board
-from queue import Queue
+from app.model.game_models.board import Board
+from app.services.game_logic import Game_Logic
 import time
 
 board = Board()
@@ -10,31 +9,30 @@ game_logic = Game_Logic()
 cx = ApplicationContext.getContext()
 
 
-class Connections:
-    player_pool = Queue(2)
+class PlayerMatcher:
 
     def add_player_to_pool(self, player):
-        self.player_pool.put(player)
+        cx.player_pool.put(player)
 
     def get_size(self):
-        return self.player_pool.qsize()
+        return cx.player_pool.qsize()
 
     def get_next_waiting_player(self):
-        return self.player_pool.get()
+        return cx.player_pool.get()
 
     def start_match(self):
         print(f"Size - {self.get_size()}")
         while (self.get_size() % 2) != 0:
             True
 
-        with self.player_pool.mutex:
-            player_list = list(self.player_pool.queue)
+        with cx.player_pool.mutex:
+            player_list = list(cx.player_pool.queue)
             player1 = player_list[0]
             player2 = player_list[1]
             gameid = player1.name + player2.name
 
         time.sleep(0.5)
-        with self.player_pool.mutex:
+        with cx.player_pool.mutex:
             print(f"Hey this is my game id {gameid}")
             game = Game(gameid, [player1, player2], board, game_logic)
             cx.game_queue_map[gameid] = game
@@ -43,7 +41,7 @@ class Connections:
             else:
                 print("GameId does not exists")
                 cx.game_queue_map[gameid] = game
-            self.player_pool.queue.clear()
+            cx.player_pool.queue.clear()
             return cx.game_queue_map[gameid]
 
 

@@ -1,6 +1,6 @@
 from pyhocon import ConfigFactory
 from pathlib import Path
-from app.utils.utils import get_project_root
+from app.services.utils import get_project_root
 
 # A simple class to encapsulate reading of model config variables
 class Config:

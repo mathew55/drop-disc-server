@@ -1,17 +1,16 @@
 from flask import Blueprint
-import json
-from app.move import next_board_move
-from app.move import next_player
-from app.player import Player
+from app.services.move_manager import next_board_move
+from app.services.move_manager import next_player
+from app.model.game_models.player import Player
 from flask import request
 from app.model.response_models.response import Response
 from app.context.app_context import ApplicationContext
-from app.connection_manager import Connections
+from app.services.player_manager import PlayerMatcher
 
 
 game_controller = Blueprint('game_controller', __name__, template_folder="templates")
 cx = ApplicationContext.getContext()
-conn = Connections()
+conn = PlayerMatcher()
 
 @game_controller.route('/start-game/', methods= ["POST"])
 def start_game():

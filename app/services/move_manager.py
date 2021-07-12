@@ -1,6 +1,6 @@
 from app.context.app_context import ApplicationContext
-from app.game import Game_Logic
-from app.board import Board
+from app.services.game_logic import Game_Logic
+from app.model.game_models.board import Board
 
 board = Board()
 game_logic = Game_Logic()
