@@ -6,6 +6,7 @@ health_check_ep = Blueprint('health_check_ep', __name__, template_folder="templa
 config = Config()
 baseEndpoint = config.get_config_value("endpoint", "base")
 
+
 @health_check_ep.route(f'{baseEndpoint}/ping', methods=['GET'])
 def check_health():
     """Determins if the container is working and healthy. Returns a JSON object with relevant data regarding the health of the service"""

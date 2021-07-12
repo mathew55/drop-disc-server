@@ -21,7 +21,6 @@ class PlayerMatcher:
         return cx.player_pool.get()
 
     def start_match(self):
-        print(f"Size - {self.get_size()}")
         while (self.get_size() % 2) != 0:
             True
 
@@ -33,13 +32,12 @@ class PlayerMatcher:
 
         time.sleep(0.5)
         with cx.player_pool.mutex:
-            print(f"Hey this is my game id {gameid}")
             game = Game(gameid, [player1, player2], board, game_logic)
             cx.game_queue_map[gameid] = game
             if gameid in cx.game_queue_map.keys():
-                print("Gameid exists")
+                cx.log.info(f"The GameID Already exists in memory, {gameid}")
             else:
-                print("GameId does not exists")
+                cx.log.info(f"GameId does not exists, Creating the game {gameid}")
                 cx.game_queue_map[gameid] = game
             cx.player_pool.queue.clear()
             return cx.game_queue_map[gameid]

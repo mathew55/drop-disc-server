@@ -1,5 +1,9 @@
 from queue import Queue
+import logging
+import os
 
+log = logging.getLogger("drop-disc-server")
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
 class ApplicationContext:
     '''
@@ -7,7 +11,7 @@ class ApplicationContext:
     '''
 
     __instance = None
-
+    
     @staticmethod
     def getContext():
         """Static access method"""
@@ -22,6 +26,7 @@ class ApplicationContext:
         else:
             self.initializePlayerPool()
             self.initializeGameQueue()
+            self.log = log
             ApplicationContext.__instance = self
 
     def initializePlayerPool(self):

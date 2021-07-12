@@ -28,7 +28,6 @@ class Game:
 
     def set_next_turn_player(self):
         if self.turn % 2 == 0:
-            print(self.player1)
             self.next_move_player = self.player1
         else:
             self.next_move_player = self.player2

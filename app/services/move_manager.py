@@ -6,6 +6,7 @@ board = Board()
 game_logic = Game_Logic()
 cx = ApplicationContext.getContext()
 
+
 def next_board_move(game_id, move_col):
     game = cx.game_queue_map[game_id]
     next_turn_player = game.get_next_turn_player()
