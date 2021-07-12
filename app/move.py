@@ -1,6 +1,5 @@
 from app.context.app_context import ApplicationContext
 from app.game import Game_Logic
-from app.model.game_models.game import Game
 from app.board import Board
 
 board = Board()
@@ -20,10 +19,10 @@ def next_board_move(game_id, move_col):
 
         game.next_turn()
 
-    return game.game_state_as_dict()
+    return game
+
 
 def next_player(game_id):
     game = cx.game_queue_map[game_id]
     return game
-
 

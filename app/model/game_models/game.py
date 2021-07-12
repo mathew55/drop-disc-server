@@ -1,5 +1,3 @@
-import time
-
 
 class Game:
 
@@ -37,7 +35,7 @@ class Game:
 
     def game_state_as_dict(self):
         return{
-            "game_state": {
+            "Game_State": {
                 "GameID": self.game_id,
                 "Player1": self.player1.name,
                 "Player2": self.player2.name,

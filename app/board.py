@@ -18,6 +18,7 @@ class Board:
                 return r
 
     def drop_disc(self, row, col, token):
+        print(f"Row - {row}, Col - {col}, token - {token}")
         self.board[row][col] = token
 
     def display_current_board_state(self):
