@@ -1,6 +1,6 @@
 from flask import Blueprint
 from app.model.response_models.health_check_response import HealthCheck
-from app.model.conf import Config
+from app.context.conf import Config
 
 health_check_ep = Blueprint('health_check_ep', __name__, template_folder="templates")
 config = Config()

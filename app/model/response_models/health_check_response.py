@@ -1,4 +1,4 @@
-from app.model.conf import Config
+from app.context.conf import Config
 from app.model.response_models.response import Response
 
 class HealthCheck(Response):

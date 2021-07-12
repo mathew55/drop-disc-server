@@ -6,7 +6,7 @@ from app.model.game_models.player import Player
 from app.model.response_models.response import Response
 from app.context.app_context import ApplicationContext
 from app.services.player_manager import PlayerMatcher
-from app.model.conf import Config
+from app.context.conf import Config
 
 config = Config()
 baseEndpoint = config.get_config_value("endpoint", "base")
