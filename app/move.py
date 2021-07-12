@@ -8,7 +8,7 @@ game_logic = Game_Logic()
 cx = ApplicationContext.getContext()
 
 def next_board_move(game_id, move_col):
-    game = cx.game_queue_map.pop(0)
+    game = cx.game_queue_map[game_id]
     next_turn_player = game.get_next_turn_player()
     insert_position_np = int(move_col)
 
@@ -20,10 +20,10 @@ def next_board_move(game_id, move_col):
 
         game.next_turn()
 
-    return game.to_ser_obj()
+    return game.game_state_as_dict()
 
 def next_player(game_id):
-    game = cx.game_queue_map[0]
+    game = cx.game_queue_map[game_id]
     return game
 
 

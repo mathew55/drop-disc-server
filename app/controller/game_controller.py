@@ -29,13 +29,14 @@ def start_game():
 
 @game_controller.route('/next-move/', methods= ["POST"])
 def make_move():
-    game_id = 1
+    game_id = request.args.get("game_id")
     move_col = int(request.args.get("move_col"))
     game = next_board_move(game_id, move_col)
     return f"{json.dumps(game)}"
 
 @game_controller.route('/get-player/', methods= ["POST"])
 def current_player():
-    game_id = 1
-    game = next_player(1)
-    return f"{json.dumps(game.to_ser_obj())}"
+    game_id = request.args.get("game_id")
+    print(f"GameId is {game_id}")
+    game = next_player(game_id)
+    return f"{json.dumps(game.game_state_as_dict())}"
