@@ -2,7 +2,7 @@
 class Game:
     """
         The GAME class holds the current state of the Game including the players
-        and the board state.
+        and the BOARD state.
 
         The game class also contains operator functions which are crucial to the game
         like declaring the winner and calculating the next player to make the move.

@@ -9,6 +9,8 @@ class Board:
         The Board class which is responsible for initalising & holding
         the state of the GameBoard. It also holds the operations which
         can be performed on the board.
+
+        The board object will be part of a game object.
     """
     def __init__(self):
         self.board = np.zeros((ROW_COUNT, COLUMN_COUNT))
