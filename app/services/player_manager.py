@@ -4,7 +4,7 @@ from app.model.game_models.board import Board
 from app.services.game_logic import Game_Logic
 import time
 
-board = Board()
+
 game_logic = Game_Logic()
 cx = ApplicationContext.getContext()
 
@@ -45,6 +45,7 @@ class PlayerMatcher:
 
         time.sleep(0.5)
         with cx.player_pool.mutex:
+            board = Board()
             game = Game(gameid, [player1, player2], board, game_logic)
             cx.game_queue_map[gameid] = game
             if gameid in cx.game_queue_map.keys():
