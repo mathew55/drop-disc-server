@@ -30,6 +30,7 @@ class ApplicationContext:
             ApplicationContext.__instance = self
 
     def initializePlayerPool(self):
+        '''Initializes player pool'''
         self.player_pool = Queue(maxsize=2)
 
     def initializeGameQueue(self):

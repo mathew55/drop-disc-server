@@ -8,6 +8,12 @@ cx = ApplicationContext.getContext()
 
 
 def next_board_move(game_id, move_col):
+    """
+    Helper function to help with making a move by updating the game state
+    :param game_id: gameID
+    :param move_col: Column to drop the disc
+    :return: updated game state
+    """
     game = cx.game_queue_map[game_id]
     next_turn_player = game.get_next_turn_player()
     insert_position_np = int(move_col)
@@ -24,6 +30,11 @@ def next_board_move(game_id, move_col):
 
 
 def next_player(game_id):
+    """
+    Helper function to determine the next player who should make a move
+    :param game_id: Current Game ID
+    :return: Current Game state
+    """
     game = cx.game_queue_map[game_id]
     return game
 

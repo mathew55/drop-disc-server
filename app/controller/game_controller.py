@@ -22,6 +22,12 @@ conn = PlayerMatcher()
 
 @game_controller.route(f'{baseEndpoint}/startgame/', methods= ["POST"])
 def start_game():
+    '''Contoller which accepts new players and add them to the player pool, Starts the match when two players are in pool,
+        Otherwise waits for a second player to join.
+
+        :return: Initial game state with details of players
+    '''
+
     player_name = request.args.get("player_name")
     player_token = int(request.args.get("player_token"))
     player = Player(player_name, player_token)
@@ -38,6 +44,11 @@ def start_game():
 
 @game_controller.route(f'{baseEndpoint}/nextmove/', methods= ["POST"])
 def make_move():
+    '''
+    Accepts in a gameID and move from the player and updates the game state
+    :return: Game State after the move
+    '''
+
     game_id = request.args.get("game_id")
     move_col = int(request.args.get("move_col"))
 
@@ -53,6 +64,11 @@ def make_move():
 
 @game_controller.route(f'{baseEndpoint}/getgamestate/', methods= ["POST"])
 def get_game_state():
+    '''
+    This will be used the player to check for his/her turn to play the game.
+    :return:The current game state.
+    '''
+
     game_id = request.args.get("game_id")
     cx.log.info(f"Request received to fetch game state of  {game_id}")
     game = next_player(game_id)

@@ -2,6 +2,9 @@ import jsons
 
 class Player:
 
+    """
+        Class which holds the player details
+    """
     def __init__(self, name, token):
         self.name = name
         self.token = token

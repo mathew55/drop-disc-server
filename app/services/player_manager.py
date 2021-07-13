@@ -10,8 +10,13 @@ cx = ApplicationContext.getContext()
 
 
 class PlayerMatcher:
+    """
+        Player matcher class which is responsible for matching players based on the
+        available players in the player pool
+    """
 
     def add_player_to_pool(self, player):
+        """Adds player for pool"""
         cx.player_pool.put(player)
 
     def get_size(self):
@@ -21,6 +26,14 @@ class PlayerMatcher:
         return cx.player_pool.get()
 
     def start_match(self):
+        """
+        Starts the match if there are a pair of players in the pool, Otherwise waits till
+        a new player joins the game
+
+        Uses locks to ensure consistency while updating the game state.
+        Also adds the newly created game to game_queue.
+        :return: Initial game state
+        """
         while (self.get_size() % 2) != 0:
             True
 

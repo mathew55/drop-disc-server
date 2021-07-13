@@ -2,6 +2,7 @@ ROW_COUNT = 6
 COLUMN_COUNT = 9
 
 class Game_Logic:
+    """The core game logic which checks for winners based on the current board state"""
 
     def check_victory(self, board, token):
         for c in range(COLUMN_COUNT - 3):

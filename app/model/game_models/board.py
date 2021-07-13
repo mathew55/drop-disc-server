@@ -5,7 +5,11 @@ ROW_COUNT = 6
 COLUMN_COUNT = 9
 
 class Board:
-
+    """
+        The Board class which is responsible for initalising & holding
+        the state of the GameBoard. It also holds the operations which
+        can be performed on the board.
+    """
     def __init__(self):
         self.board = np.zeros((ROW_COUNT, COLUMN_COUNT))
 
